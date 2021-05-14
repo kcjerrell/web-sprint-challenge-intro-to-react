@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import Character from './components/Character';
+import Characters from './components/Characters';
 import { API_ENDPOINT } from "./constants";
 
 const App = () => {
@@ -30,10 +31,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1 className="Header">Characters</h1>
-      {characters.map(char => (
-        <Character data={char} key={char.url} />
-      ))}
+      <Characters data={characters}></Characters>
     </div>
   );
 }
