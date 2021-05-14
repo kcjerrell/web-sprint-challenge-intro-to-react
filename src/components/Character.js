@@ -13,6 +13,7 @@ const StyledComp = styled.div`
 `;
 
 const Character = (props) => {
+	console.log(`Character called`);
 	const { name } = props.data;
 	const keys =
 		[

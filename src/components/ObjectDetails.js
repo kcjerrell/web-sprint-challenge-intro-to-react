@@ -1,6 +1,6 @@
-import axios from 'axios';
-import react, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import apiCache from '../apiCache';
 
 const StyledComp = styled.div`
 
@@ -25,6 +25,7 @@ const Value = styled.div`
 `;
 
 const ObjectDetails = (props) => {
+	console.log(`ObjectDetails called`);
 	const { data, keys } = props;
 	return (
 		<StyledComp>
@@ -39,6 +40,7 @@ const ObjectDetails = (props) => {
 };
 
 const ObjectDetail = (props) => {
+	console.log(`ObjectDetail called`);
 	const { name, value } = props;
 
 	// Returns a div with each array item if value is an array
@@ -73,18 +75,22 @@ const ObjectDetail = (props) => {
 };
 
 const UnresolvedValue = (props) => {
+	console.log(`UnresolvedValue called`);
 	const { url } = props;
-	const [homeworld, setHomeworld] = useState('...');
+	const [value, setValue] = useState('...');
 
 	useEffect(() => {
-		axios.get(url).then(response => {
-			console.log(response);
-			setHomeworld(response.data.name);
+	console.log(`UnresolvedValue useEffect called`);
+		apiCache.get(url).then(response => {
+			if (response.data.name)
+				setValue(response.data.name);
+			else if (response.data.title)
+				setValue(response.data.title);
 		}, reason => console.log(reason));
 	}, [url])
 
 	return (
-		<Value>{homeworld}</Value>
+		<Value>{value}</Value>
 	);
 };
 
