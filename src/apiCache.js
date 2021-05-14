@@ -1,5 +1,11 @@
 import axios from "axios";
 
+// this function is designed to be used in place of axios.get()
+// if the requested url has already been requested, it is returned from cache
+// for this project, that is useful because many characters my list their
+// homeworld as "http://swapi.dev/api/planets/1/", and only one call should be made
+// to resolve that to "Tatooine." This not only makes the app more responsive, but reduces
+// the number of API calls and data used
 async function get(url) {
 	console.log(`requested ${url}`);
 	if (cache.hasOwnProperty(url))
@@ -20,6 +26,8 @@ const apiCache = { get };
 
 export default apiCache;
 
+// I've supplied the first two pages of people results, because that call will be made
+// hundreds of times over the course of building and styling this app.
 const cache = {
 	"https://swapi.dev/api/people/?page=1": {
 			"data": {

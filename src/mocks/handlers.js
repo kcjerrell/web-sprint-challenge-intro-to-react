@@ -3,8 +3,8 @@ import { rest } from "msw";
 
 // I had to disable this becaues it was returning the data differently than the actual api
 // and because I wanted to get more pages
-// Obviously for styling/design, I'm gonna end up hitting the same api call dozens even hundreds of times,
-// so I essentially made my own mock for the first two pages. It's in apiCache.js
+
+// check out apiCache.js
 
 export const handlers = [
   // rest.get("https://swapi.dev/api/people/", (req, res, ctx) => {
