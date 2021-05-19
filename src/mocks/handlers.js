@@ -1,10 +1,15 @@
 // src/mocks/handlers.js
 import { rest } from "msw";
 
+// I had to disable this becaues it was returning the data differently than the actual api
+// and because I wanted to get more pages
+
+// check out apiCache.js
+
 export const handlers = [
-  rest.get("https://swapi.dev/api/people/", (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(data));
-  }),
+  // rest.get("https://swapi.dev/api/people/", (req, res, ctx) => {
+  //   return res(ctx.status(200), ctx.json(data));
+  // }),
 ];
 
 export const data = [
